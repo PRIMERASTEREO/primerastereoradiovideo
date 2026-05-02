@@ -15,7 +15,7 @@
         .bg-layer { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; filter: blur(60px) brightness(0.2); z-index: -2; transition: 2s; }
         .bg-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)); z-index: -1; }
         
-        /* Menú Lateral */
+        /* Menú Lateral Completo */
         #menu-toggle { display: none; }
         .menu-btn { position: fixed; top: 15px; left: 15px; z-index: 1100; cursor: pointer; color: white; font-size: 22px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; }
         .side-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: rgba(10, 10, 10, 0.98); transition: 0.4s; z-index: 1050; padding: 20px; border-right: 1px solid var(--primary-color); overflow-y: auto; }
@@ -23,15 +23,23 @@
         
         .btn-social { display: flex; align-items: center; padding: 10px 15px; margin-bottom: 6px; border-radius: 8px; text-decoration: none; color: white; font-size: 1.00rem; background: rgba(255,255,255,0.05); transition: 0.3s; }
         .btn-social i { margin-right: 12px; width: 22px; text-align: center; }
-
+        
         .instagram i { color: #E1306C; }
         .facebook i  { color: #1877F2; }
         .whatsapp i  { color: #25D366; }
-        
+        .telegram i  { color: #0088CC; }
+        .tiktok i    { color: #fff; }
+        .soundcloud i { color: #ff8400; } 
+        .youtube i   { color: #FF0000; }
+        .x-twitter i { color: #FFFFFF; }
+        .threads i   { color: #FFFFFF; }
+        .app-store i { color: #A4C639; }
+
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; text-align: center; }
         .main-title { color: var(--accent); font-size: 1.8rem; letter-spacing: 2px; }
         .sub-title { letter-spacing: 6px; opacity: 1.7; font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; }
         
+        /* Contenedor de Video/Arte */
         .logo-container { width: 325px; height: 315px; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.9); background: #000; margin-bottom: 15px; }
         #video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         #yt-player { width: 100%; height: 100%; border: none; transform: scale(1.8); pointer-events: none; opacity: 0; transition: 1s; }
@@ -44,8 +52,8 @@
         #artist-name { font-size: 1.3rem; font-weight: 600; display: inline; }
         #song-title { color: var(--primary-color); font-size: 1.3rem; display: inline; margin-left: 20px; }
 
-        /* Contenedor de Banners Ajustado */
-        .ads-container { width: 320px; text-align: center; margin: 5px 0; height: 80px; overflow: hidden; }
+        /* Publicidad 1 a 1 */
+        .ads-container { width: 320px; text-align: center; margin: 5px 0; height: 80px; }
         .ads-title { color: var(--accent); font-size: 0.5rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 5px; }
         #ad-link img { width: 100%; height: 70px; object-fit: contain; transition: opacity 0.8s ease-in-out; }
 
@@ -65,7 +73,14 @@
         <h3 style="color:var(--accent); margin-bottom:20px; padding-left:40px;">SÍGUENOS</h3>
         <a href="https://www.instagram.com/Primera.Stereo/" target="_blank" class="btn-social instagram"><i class="fab fa-instagram"></i> Instagram</a>
         <a href="https://www.facebook.com/PrimeraStereoRadio" target="_blank" class="btn-social facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <!-- Agrega el resto de tus enlaces aquí -->
+        <a href="https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio" target="_blank" class="btn-social whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+        <a href="https://t.me/PrimeraStereo" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+        <a href="https://www.tiktok.com/@primerastereo" target="_blank" class="btn-social tiktok"><i class="fab fa-tiktok"></i> Tiktok</a>
+        <a href="https://soundcloud.com/primerastereo" target="_blank" class="btn-social soundcloud"><i class="fab fa-soundcloud"></i> Soundcloud</a>
+        <a href="https://www.youtube.com/@primerastereo" target="_blank" class="btn-social youtube"><i class="fab fa-youtube"></i> Youtube</a>
+        <a href="https://x.com/Primera_Stereo" target="_blank" class="btn-social x-twitter"><i class="fab fa-x-twitter"></i> Twitter / X</a>
+        <a href="https://www.threads.net/@primera.stereo" target="_blank" class="btn-social threads"><i class="fas fa-at"></i> Threads</a>
+        <a href="https://www.appcreator24.com/app3819260-6rbmq8" target="_blank" class="btn-social app-store"><i class="fab fa-google-play"></i> Descargar App</a>
     </aside>
 
     <main>
@@ -78,7 +93,7 @@
         <div class="track-info">
             <div class="marquee">
                 <span id="artist-name">PRIMERA STEREO</span>
-                <span id="song-title">Conectando...</span>
+                <span id="song-title">Cargando señal...</span>
             </div>
         </div>
     </main>
@@ -90,10 +105,10 @@
         <div class="ads-container">
             <p class="ads-title">NUESTROS PATROCINANTES</p>
             <a id="ad-link" href="#" target="_blank">
-                <img id="ad-banner" src="" style="opacity: 1;">
+                <img id="ad-banner" src="https://primerastereo.netlify.app/disponible2.jpg" style="opacity: 1;">
             </a>
         </div>
-        <p style="font-size: 0.6rem; opacity: 0.8; margin-top: 5px;">© 2010 - 2026 PRIMERA STEREO</p>
+        <p style="font-size: 0.6rem; opacity: 0.8;">© 2010 - 2026 PRIMERA STEREO</p>
     </footer>
 
     <audio id="audio-player" src="https://primerastereo.stream.laut.fm/primerastereo" crossorigin="anonymous"></audio>
@@ -115,7 +130,7 @@
 
         function rotateBanners() {
             const bannerImg = document.getElementById('ad-banner');
-            bannerImg.style.opacity = 0; // Efecto de desvanecimiento
+            bannerImg.style.opacity = 0;
             setTimeout(() => {
                 bannerImg.src = banners[bIdx].img;
                 document.getElementById('ad-link').href = banners[bIdx].link;
@@ -142,18 +157,39 @@
             try {
                 const res = await fetch('https://api.laut.fm/station/primerastereo/current_song');
                 const data = await res.json();
-                document.getElementById('artist-name').innerText = data.artist.name;
-                document.getElementById('song-title').innerText = data.title;
-                
-                // Lógica de carátulas (omito detalles largos para que el código funcione ya)
-                const itunes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(data.artist.name + " " + data.title)}&entity=song&limit=1`);
-                const iData = await itunes.json();
-                let img = (iData.results.length > 0) ? iData.results[0].artworkUrl100.replace('100x100', '600x600') : 'https://primerastereo.netlify.app/favicon.png';
-                art.src = img; bg.style.backgroundImage = `url('${img}')`;
+                const artist = data.artist.name;
+                const title = data.title;
+
+                if (document.getElementById('song-title').innerText !== title) {
+                    document.getElementById('artist-name').innerText = artist;
+                    document.getElementById('song-title').innerText = title;
+
+                    // Buscar Carátula
+                    const itunes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&entity=song&limit=1`);
+                    const iData = await itunes.json();
+                    let img = (iData.results.length > 0) ? iData.results[0].artworkUrl100.replace('100x100', '600x600') : 'https://primerastereo.netlify.app/favicon.png';
+                    art.src = img; bg.style.backgroundImage = `url('${img}')`;
+
+                    // Buscar Video
+                    if(player && player.loadVideoById) {
+                        const query = encodeURIComponent(artist + " " + title + " official video");
+                        fetch(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + query)}`)
+                        .then(r => r.text()).then(html => {
+                            const id = html.match(/"videoId":"([^"]+)"/);
+                            if (id && id[1]) {
+                                player.loadVideoById({ videoId: id[1] });
+                                player.mute();
+                                setTimeout(() => { if(!errorYoutube) art.style.opacity = "0"; document.getElementById('yt-player').style.opacity = "1"; }, 4000);
+                            } else {
+                                art.style.opacity = "1";
+                                document.getElementById('yt-player').style.opacity = "0";
+                            }
+                        });
+                    }
+                }
             } catch (e) {}
         }
 
-        // Control de Play/Pausa
         document.getElementById('play-btn').onclick = () => {
             if (audio.paused) { 
                 audio.play(); 
@@ -166,9 +202,8 @@
 
         document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
 
-        // Intervalos
         setInterval(updateSong, 15000);
-        setInterval(rotateBanners, 15000); // Cambio exacto cada 15 seg
+        setInterval(rotateBanners, 15000); 
         updateSong();
         rotateBanners();
     </script>
