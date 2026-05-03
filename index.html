@@ -10,31 +10,21 @@
     <style>
         :root { --primary-color: #1877F2; --bg-dark: #000000; --accent: #1877F2; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Ajuste para evitar scroll en móviles */
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            background: var(--bg-dark); 
-            color: white; 
-            height: 100vh; 
-            height: 100dvh; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-        }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-dark); color: white; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
         
         .bg-layer { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; filter: blur(60px) brightness(0.2); z-index: -2; transition: 2s; }
         .bg-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)); z-index: -1; }
         
         /* Menú Lateral */
         #menu-toggle { display: none; }
-        .menu-btn { position: fixed; top: 10px; left: 10px; z-index: 1100; cursor: pointer; color: white; font-size: 20px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; }
+        .menu-btn { position: fixed; top: 15px; left: 15px; z-index: 1100; cursor: pointer; color: white; font-size: 22px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; }
         .side-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: rgba(10, 10, 10, 0.98); transition: 0.4s; z-index: 1050; padding: 20px; border-right: 1px solid var(--primary-color); overflow-y: auto; }
         #menu-toggle:checked + .side-menu { left: 0; }
         
-        .btn-social { display: flex; align-items: center; padding: 10px 15px; margin-bottom: 6px; border-radius: 8px; text-decoration: none; color: white; font-size: 1rem; background: rgba(255,255,255,0.05); transition: 0.3s; }
+        .btn-social { display: flex; align-items: center; padding: 10px 15px; margin-bottom: 6px; border-radius: 8px; text-decoration: none; color: white; font-size: 1.00rem; background: rgba(255,255,255,0.05); transition: 0.3s; }
         .btn-social i { margin-right: 12px; width: 22px; text-align: center; }
-		/* Colores de Redes */
+        
+        /* Colores de Redes */
         .instagram i { color: #E1306C; }
         .facebook i  { color: #1877F2; }
         .whatsapp i  { color: #25D366; }
@@ -45,67 +35,53 @@
         .x-twitter i { color: #FFFFFF; }
         .threads i   { color: #FFFFFF; }
         .app-store i { color: #A4C639; }
-        /* Contenido Principal Responsivo */
-        main { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            z-index: 10; 
-            text-align: center;
-            padding: 10px;
-        }
 
-        .main-title { color: var(--accent); font-size: clamp(1.2rem, 5vw, 1.8rem); letter-spacing: 2px; }
-        .sub-title { letter-spacing: 4px; opacity: 0.8; font-size: 0.7rem; margin-bottom: 5px; text-transform: uppercase; }
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; text-align: center; }
+        .main-title { color: var(--accent); font-size: 1.8rem; letter-spacing: 2px; }
+        .sub-title { letter-spacing: 6px; opacity: 1.7; font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; }
         
-        /* Ajuste dinámico del tamaño del reproductor */
-        .logo-container { 
-            width: min(85vw, 325px); 
-            height: min(80vw, 315px); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            position: relative; 
-            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
-            background: #000; 
-            margin-bottom: 10px; 
-        }
+        /* Caja más grande según pedido */
+        .logo-container { width: 325px; height: 315px; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.9); background: #000; margin-bottom: 15px; }
         #video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         #yt-player { width: 100%; height: 100%; border: none; transform: scale(1.8); pointer-events: none; opacity: 0; transition: 1s; }
         #album-art { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; transition: 1.5s; }
 
-        .track-info { width: min(90vw, 340px); margin: 0 auto 5px; overflow: hidden; white-space: nowrap; }
-        .marquee { display: inline-block; animation: marquee 15s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
-        #artist-name { font-size: 1.1rem; font-weight: 600; display: inline; }
-        #song-title { color: var(--primary-color); font-size: 1.1rem; display: inline; margin-left: 20px; }
-
-        /* Footer Compacto y Reducción de Espacios */
-        footer { 
-            padding: 5px 15px 10px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            width: 100%;
+        @keyframes pulse-extra {
+            0% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 0px var(--accent)); }
+            50% { transform: scale(1.05); filter: brightness(1.2) drop-shadow(0 0 25px var(--accent)); }
+            100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 0px var(--accent)); }
         }
+        .animar-logo { animation: pulse-extra 2s infinite ease-in-out; }
+
+        /* Marquesina debajo de la caja */
+.track-info { 
+    width: 340px;          /* Ajustado al mismo ancho que el logo-container */
+    margin: 0 auto 10px;   /* Centra la marquesina y da espacio abajo */
+    overflow: hidden; 
+    white-space: nowrap; 
+}
+
+.marquee { 
+    display: inline-block; 
+    animation: marquee 15s linear infinite; 
+}
+
+@keyframes marquee { 
+    0% { transform: translateX(100%); } 
+    100% { transform: translateX(-100%); } 
+}
         
-        .play-btn { width: 55px; height: 55px; border-radius: 50%; background: var(--primary-color); border: none; color: white; cursor: pointer; font-size: 1.2rem; margin-bottom: 5px; }
-        #volume-slider { width: min(70vw, 220px); accent-color: var(--accent); margin-bottom: 5px; }
+        #artist-name { font-size: 1.3rem; font-weight: 600; display: inline; }
+        #song-title { color: var(--primary-color); font-size: 1.3rem; display: inline; margin-left: 20px; }
 
-        .ads-container { width: min(90vw, 320px); text-align: center; margin-top: 2px; }
-        .ads-title { color: var(--accent); font-size: 0.55rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 3px; }
-        #ad-link img { width: 100%; height: clamp(50px, 10vh, 70px); object-fit: contain; transition: opacity 0.8s; }
+        /* Sección Patrocinantes */
+        .ads-container { width: 320px; text-align: center; margin: 5px 0; }
+        .ads-title { color: var(--accent); font-size: 0.5rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 5px; }
+        #ad-link img { width: 100%; max-height: 70px; object-fit: contain; }
 
-        .copyright { font-size: 0.6rem; opacity: 0.7; margin-top: 5px; text-align: center; }
-
-        /* Media Queries para pantallas muy pequeñas */
-        @media (max-height: 600px) {
-            .logo-container { width: 220px; height: 210px; }
-            .main-title { font-size: 1.1rem; }
-            .play-btn { width: 45px; height: 45px; }
-        }
+        footer { padding: 10px 25px 20px; display: flex; flex-direction: column; align-items: center; }
+        .play-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--primary-color); border: none; color: white; cursor: pointer; font-size: 1.3rem; }
+        #volume-slider { width: 220px; margin-top: 10px; accent-color: var(--accent); }
     </style>
 </head>
 <body>
@@ -116,10 +92,10 @@
     <input type="checkbox" id="menu-toggle">
 
     <aside class="side-menu">
-        <h3 style="color:var(--accent); margin-bottom:15px; padding-left:40px;">Síguenos</h3>
+        <h3 style="color:var(--accent); margin-bottom:20px; padding-left:40px;">SÍGUENOS</h3>
         <a href="https://www.instagram.com/Primera.Stereo/" target="_blank" class="btn-social instagram"><i class="fab fa-instagram"></i> Instagram</a>
         <a href="https://www.facebook.com/PrimeraStereoRadio" target="_blank" class="btn-social facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a href="https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio" target="_blank" class="btn-social whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+        <a href="https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio%20y%20quiero%20informaci%C3%B3n%20%20de%20la%20publicidad" target="_blank" class="btn-social whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</a>
         <a href="https://t.me/PrimeraStereo" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
         <a href="https://www.tiktok.com/@primerastereo" target="_blank" class="btn-social tiktok"><i class="fab fa-tiktok"></i> Tiktok</a>
         <a href="https://soundcloud.com/primerastereo" target="_blank" class="btn-social soundcloud"><i class="fab fa-soundcloud"></i> Soundcloud</a>
@@ -131,15 +107,15 @@
 
     <main>
         <h1 class="main-title">PRIMERA STEREO</h1>
-        <p class="sub-title"><strong></strong>Radio Video Online</p>
+        <p class="sub-title">Radio Video Online</p>
         <div class="logo-container">
             <div id="video-container"><div id="yt-player"></div></div>
             <img src="https://primerastereo.netlify.app/favicon.png" id="album-art">
         </div>
         <div class="track-info">
             <div class="marquee">
-                <span id="artist-name">PRIMERA STEREO</span>
-                <span id="song-title">Iniciando...</span>
+                <span id="artist-name">PRIMERA STEREO RADIO VIDEO ONLINE</span>
+                <span id="song-title">Cargando...</span>
             </div>
         </div>
     </main>
@@ -149,12 +125,12 @@
         <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8">
         
         <div class="ads-container">
-            <p class="ads-title">NUESTROS PATROCINANTES</p>
-            <a id="ad-link" href="#" target="_blank">
-                <img id="ad-banner" src="https://primerastereo.netlify.app/disponible2.jpg">
-            </a>
+            <p class="ads-title">TU PUBLICIDAD AQUÍ...
+</p>
+            <a id="ad-link" href="https://primerastereo.netlify.app/disponible2.jpg", link: "https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio%20y%20quiero%20informaci%C3%B3n%20%20de%20la%20publicidad" target="_blank"><img id="ad-banner" src=""></a>
         </div>
-        <p class="copyright">© 2010 - 2026 PRIMERA STEREO<br>RADIO VIDEO ONLINE</p>
+
+        <p style="font-size: 0.6rem; opacity: 1.6; margin-top: 0px; text-align: center;">© 2010 - 2026 PRIMERA STEREO<br>RADIO VIDEO ONLINE</p>
     </footer>
 
     <audio id="audio-player" src="https://primerastereo.stream.laut.fm/primerastereo" crossorigin="anonymous"></audio>
@@ -169,20 +145,16 @@
             { img: "https://primerastereo.netlify.app/disponible2.jpg", link: "https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio%20y%20quiero%20informaci%C3%B3n%20%20de%20la%20publicidad" },
             { img: "https://primerastereo.netlify.app/Alvacom%20Systems.jpg", link: "https://www.facebook.com/AlvacomSystems" },
             { img: "https://primerastereo.netlify.app/KINESIOLOGIA2.gif", link: "https://www.instagram.com/nely_alvarez" },
-            { img: "https://primerastereo.netlify.app/En3D%20Venezuela%20Banner.png", link: "http://www.en3d.io" },
-            { img: "https://primerastereo.netlify.app/disponible1.jpg", link: "https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio%20y%20quiero%20informaci%C3%B3n%20%20de%20la%20publicidad" }
+			{ img: "https://primerastereo.netlify.app/En3D%20Venezuela%20Banner.png", link: "http://www.en3d.io" },
+			{ img: "https://primerastereo.netlify.app/disponible1.jpg", link: "https://api.whatsapp.com/send?phone=+5804127097429&text=Hola%20estoy%20escuchando%20la%20radio%20y%20quiero%20informaci%C3%B3n%20%20de%20la%20publicidad" }
+			
         ];
         let bIdx = 0;
 
-        function rotateBanners() {
-            const bannerImg = document.getElementById('ad-banner');
-            bannerImg.style.opacity = 0;
-            setTimeout(() => {
-                bannerImg.src = banners[bIdx].img;
-                document.getElementById('ad-link').href = banners[bIdx].link;
-                bannerImg.style.opacity = 1;
-                bIdx = (bIdx + 1) % banners.length;
-            }, 800);
+        function updateBanners() {
+            document.getElementById('ad-banner').src = banners[bIdx].img;
+            document.getElementById('ad-link').href = banners[bIdx].link;
+            bIdx = (bIdx + 1) % banners.length;
         }
 
         var tag = document.createElement('script');
@@ -194,42 +166,54 @@
             player = new YT.Player('yt-player', {
                 height: '100%', width: '100%',
                 playerVars: { 'autoplay': 1, 'mute': 1, 'controls': 0, 'modestbranding': 1, 'rel': 0 },
-                events: { 'onError': () => { errorYoutube = true; art.style.opacity = "1"; } }
+                events: { 'onError': onPlayerError }
             });
         }
 
-        async function updateSong() {
+        function onPlayerError() { errorYoutube = true; art.style.opacity = "1"; document.getElementById('yt-player').style.opacity = "0"; }
+
+        async function update() {
             try {
                 const res = await fetch('https://api.laut.fm/station/primerastereo/current_song');
                 const data = await res.json();
-                const artist = data.artist.name;
-                const title = data.title;
+                const songTitleElem = document.getElementById('song-title');
+                
+                if (songTitleElem.getAttribute('data-current') !== data.title) {
+                    songTitleElem.setAttribute('data-current', data.title);
+                    setTimeout(async () => {
+                        const artist = data.artist.name;
+                        const title = data.title;
+                        document.getElementById('artist-name').innerText = artist;
+                        songTitleElem.innerText = title;
 
-                if (document.getElementById('song-title').innerText !== title) {
-                    document.getElementById('artist-name').innerText = artist;
-                    document.getElementById('song-title').innerText = title;
+                        if(player && player.stopVideo) player.stopVideo();
+                        document.getElementById('yt-player').style.opacity = "0";
+                        art.style.opacity = "1"; art.classList.remove('animar-logo');
+                        errorYoutube = false;
 
-                    const itunes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&entity=song&limit=1`);
-                    const iData = await itunes.json();
-                    let img = (iData.results.length > 0) ? iData.results[0].artworkUrl100.replace('100x100', '600x600') : 'https://primerastereo.netlify.app/favicon.png';
-                    art.src = img; bg.style.backgroundImage = `url('${img}')`;
+                        if (artist.toUpperCase().includes("PRIMERA STEREO") || title.toUpperCase().includes("JINGLE")) {
+                            art.src = "https://primerastereo.netlify.app/favicon.png";
+                            art.classList.add('animar-logo');
+                            bg.style.backgroundImage = "none";
+                        } else {
+                            const itunes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&entity=song&limit=1`);
+                            const iData = await itunes.json();
+                            let img = (iData.results.length > 0) ? iData.results[0].artworkUrl100.replace('100x100', '600x600') : 'https://primerastereo.netlify.app/favicon.png';
+                            art.src = img; bg.style.backgroundImage = `url('${img}')`;
 
-                    if(player && player.loadVideoById) {
-                        const query = encodeURIComponent(artist + " " + title + " official video");
-                        fetch(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + query)}`)
-                        .then(r => r.text()).then(html => {
-                            const id = html.match(/"videoId":"([^"]+)"/);
-                            if (id && id[1]) {
-                                player.loadVideoById({ videoId: id[1] });
-                                player.mute();
-                                setTimeout(() => { if(!errorYoutube) art.style.opacity = "0"; document.getElementById('yt-player').style.opacity = "1"; }, 4000);
-                            } else {
-                                art.style.opacity = "1";
-                                document.getElementById('yt-player').style.opacity = "0";
-                            }
-                        });
-                    }
+                            const query = encodeURIComponent(artist + " " + title + " official video");
+                            fetch(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + query)}`)
+                            .then(r => r.text()).then(html => {
+                                const id = html.match(/"videoId":"([^"]+)"/);
+                                if (id && id[1] && player && player.loadVideoById) {
+                                    player.loadVideoById({ videoId: id[1], startSeconds: 0 }); player.mute();
+                                    setTimeout(() => { if (!errorYoutube) { art.style.opacity = "0"; document.getElementById('yt-player').style.opacity = "1"; }}, 4000);
+                                }
+                            });
+                        }
+                    }, 3000);
                 }
+                updateBanners();
             } catch (e) {}
         }
 
@@ -239,11 +223,37 @@
         };
 
         document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
-
-        setInterval(updateSong, 15000);
-        setInterval(rotateBanners, 15000); 
-        updateSong();
-        rotateBanners();
+        setInterval(update, 15000);
+        update(); updateBanners();
     </script>
+	<script>
+  // 1. Evitar el men煤 del botón derecho (segundo botón)
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // 2. Inhabilitar Ctrl+U (y Ctrl+Shift+I / F12 para mayor seguridad)
+  document.addEventListener('keydown', function(event) {
+    if (
+      (event.ctrlKey && event.key === 'u') || // Ctrl+U
+      (event.ctrlKey && event.shiftKey && event.key === 'I') || // Ctrl+Shift+I
+      event.key === 'F12' // F12
+    ) {
+      event.preventDefault();
+      return false;
+    }
+  });
+</script>
+
+<script>
+    // Inhabilitar clic derecho
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Inhabilitar Ctrl+U y Ctrl+I
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
 </body>
 </html>
